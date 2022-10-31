@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% block title %}Sign up{% endblock %}{% block content %}
+<form method ="POST">
+    <center>
+    <br>
+    <div style="border-style: solid; border-color: #2B2B2B; border-width: 20px;width:500px;height:550px;border-radius:15px;background-color: rgb(255, 255, 255);">
+        <h3 align="center">Sign Up</h3>
+        <!--Email information retriever-->
+        <div class="form-group" align="left">
+            <label for="email">Email address:</label>
+            <input 
+            type="email" 
+            class="form-control" 
+            id="email" 
+            name="email"
+            placeholder="Enter email"
+            />    
+        </div>
+        <!--First name information retriever-->
+        <div class="form-group" align="left">
+            <label for="firstName">First Name:</label>
+            <input 
+            type="text" 
+            class="form-control" 
+            id="firstName" 
+            name="firstName"
+            placeholder="Enter first name"
+            />    
+        </div>
+        <br>
+        <!--Password information retriever-->
+        <div class="form-group" align="left">
+            <label for="password1">Password:</label>
+            <input 
+            type="password" 
+            class="form-control" 
+            id="password1" 
+            name="password1"
+            placeholder="Create password"
+            />    
+        </div>
+            <!--Password confirmation information retriever-->
+        <div class="form-group" align="left">
+            <label for="password2">Password (Confirm):</label>
+            <input 
+            type="password" 
+            class="form-control" 
+            id="password2" 
+            name="password2"
+            placeholder="Confirm password"
+            />    
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </center>
+    <br />
+</form>
+{% endblock %}

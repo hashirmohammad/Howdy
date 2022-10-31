@@ -1,0 +1,75 @@
+{% extends "base.html" %} {% block title %}Chatapp{% endblock %}{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js" integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <style>
+    .textover {
+        position: relative;
+        max-width: 600px;
+        display:flexbox;
+        align-items: center;
+        justify-content:center ;
+        width: 30%;
+        display: flexbox;
+        margin: 0px auto;
+    }
+    .textover image{
+        align-items:center; 
+    }
+    .textover figcaption{
+        position: absolute;
+        bottom: 95px;
+        left: 80px;
+        font-family:Brush Script MT, Brush Script Std, cursive;
+        color: white;
+        font-size: xxx-large;
+    }
+    </style>
+    <div style="min-height: 50px;"></div>
+    <div style="align-items: center;justify-content: center;">
+        <figure class="textover">
+            <image src="{{url_for('static',filename='Images/Howdy.png')}}" width="200" height="300" align="center"> 
+            <figcaption>Howdy <span id='user-name'></span>
+            </figcaption>       
+        </figure>
+    </div>
+    <!--Script java chatting portion-->
+    <script type="text/javascript">
+            var name=localStorage.getItem('user-name');
+            document.getElementById('user-name').textContent=name;
+        $(document).ready(function(name) {
+            var socket = io.connect("http://localhost:5000")
+            socket.on('connect', function(){
+                socket.send("User connected!")
+            });
+
+            socket.on('message', function(data){
+                $('#messages').append($('<p>').text(data));
+            });
+            
+            $('#sendBtn').on('click', function(){
+                var name=localStorage.getItem('user-name');
+                document.getElementById('user-name').textContent=name;
+
+                socket.send(name+": "+$('#message').val());
+                $('#message').val('');
+            });
+        })
+    </script>
+    <div></div>
+    <center>
+        <div align="center" style="border-style: solid; border-color: #2B2B2B; border-width: 20px;width:400px;height:440px;border-radius:15px;background-color: rgb(2, 53, 73);">
+            <div align="left" id="messages" style="min-height: 200px;border-style:solid; border-color: rgba(82, 80, 80, 0.815); border-width: 7px;width:362px;height:356px;background-color: rgb(160, 250, 180)">
+            </div>
+            <input type="text" id="message" placeholder="Message" required>
+            <button id="sendBtn" class="btn btn-default" style="background-color: rgb(6, 243, 223);" >Send</button>
+        </div>
+    <center>
+    </body>
+</html>
+{% endblock %}

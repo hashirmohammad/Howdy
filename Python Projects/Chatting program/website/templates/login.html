@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %}{% block content %}
+<form method ="POST">
+    <center>
+    <br>
+    <div style="border-style: solid; border-color: #2B2B2B; border-width: 20px;width:450px;height:500px;border-radius:15px;background-color: rgb(255, 255, 255);">
+        <h3 align="center">Login</h3>
+        <br>
+        <!--Email information retriever-->
+        <div class="form-group" align="left" sty>
+            <label for="email">Email address:</label>
+            <input 
+            type="email" 
+            class="form-control" 
+            id="email" 
+            name="email"
+            placeholder="Enter email"
+            />    
+        </div>
+        <!--Password information retriever-->
+        <div class="form-group" align="left">
+            <label for="password">Password:</label>
+            <input 
+            type="password" 
+            class="form-control" 
+            id="password" 
+            name="password"
+            placeholder="Enter password"
+            />    
+        </div>
+        <br/>
+        <div >
+        <br>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary" style="height: 50px;width: 300px; height: 50px;">Login</button>
+        </div>
+    </center>
+    </div>
+</form>
+
+{% endblock %}
